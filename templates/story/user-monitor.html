@@ -1,0 +1,73 @@
+{% extends "admin/base_site.html" %}
+{% load story_tags %}
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/base.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/forms.css" />
+{% block extrahead %}
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <script type="text/javascript" src="//112255.contify.com/admin_v125/js/core.js"></script>
+    <script type="text/javascript" src="//112255.contify.com/admin_v125/js/calendar.js"></script>
+    <script type="text/javascript" src="//112255.contify.com/admin_v125/js/admin/DateTimeShortcuts.js"></script>
+    <style>
+        label {
+            display: inline-block;
+            width: 80px;
+            text-align: left;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<body class="content" style="background: #E8E8E8">
+    <!-- left filters container starts here-->
+    <div id="part1" style="float: left; width: 25%; background: #DFE6E6">
+        <font color="black">
+        <form id="sForm" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="submit" style="font-size:10pt;color:white;background-color:green;border:2px solid #336600;padding:3px">
+        </form>
+    </div>
+    <!-- left filters container ends here-->
+    
+    <!-- Insert your content here -->
+    <div id="part2" style="float: right; width: 69%; background: #E8E8E8 ">
+        <!-- write the result here-->
+        {% if result %}
+            <table id="table1" style="width:100%; display:inline-block; ">
+                <tr>
+                     
+                    <th width="30%">Created By</th>
+                    <th width="25%">Approved By</th>
+                    <th width="25%">Domain</th>
+                    <th width="10%">Count</th>
+                </tr>
+
+            {% for i in result %}
+                <tr>
+                    <td >{{ i.created_by__username }}</td>
+                    <td >{{ i.approved_by__username }}</td>
+                    <td>{{ i.alternate_domain__name }}</td>
+                    <td>
+                        <a target="_blank" href="../../admin/story/story/?{{ base_query_string }}&{{ i|prepare_query_string }}">{{ i.c }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td><strong>Total</strong></td>
+                <td></td>
+                <td></td>
+                <td><strong>{{ total_count }}</strong></td>
+            </tr>
+            </table>
+        {% else %}
+            <p> No Result Found </p>
+        {% endif %}  
+    </div>
+</body>
+{% endblock %}
+{% block breadcrumbs %}
+{% endblock %}
+</html>
+
+

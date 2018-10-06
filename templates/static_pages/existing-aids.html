@@ -1,0 +1,24 @@
+{% extends "admin/base_site.html" %}
+<html>
+	{% block content %}
+	<body class="content" style="background: #E8E8E8">
+		<h1>Integration Guidelines</h1>
+		<br>
+		<h2>Cheking Existing AIDs:</h2>
+		<br>
+		<p>
+			<strong>Please follow the below steps:</strong>
+		<p>1. Click on "Get Content Area" and check whether the news present in the Web URL, "Get Content Area" and "New Snapshot" is the same. If not then follow step 2 else follow step 3.</p>
+		<p>2. Repeat all steps mentioned in guidelines for "General Integration Process" and put "Fixed" in your report's comments section after completing the steps as mentioned.</p>
+		<p>3. If content present in the Web URL, "Get Content Area" and "New Snapshot" is the same, then don't click on anything and just put "Working Fine" in your report's comments section.</p>
+		</p>
+		</br>
+		<strong>Do's and Dont's:</strong>
+		<p>
+		<p>Please do not check the "Overwrite" box if the story in snapshot is greater than or equal to 72 hours from the latest story in Web URL.</p>
+		<p>Please do not click on "Save and continue editing" if the news in the Web URL, "Get Content Area" and "New Snapshot" is the same</p>
+		</p>
+		</br>
+	</body>
+	{% endblock %}
+</html>

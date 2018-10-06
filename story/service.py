@@ -1,0 +1,33 @@
+#import satetements
+import logging
+
+import requests
+import datetime
+
+from requests.auth import HTTPProxyAuth
+
+
+logger = logging.getLogger(__name__)
+
+d = datetime.datetime.now().replace(hour=0,minute=0,second=0)
+date= d.strftime("%Y%m")
+
+REQUEST_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.45 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'accept-language': 'en-US,en;q=0.8'
+}
+
+
+ISO_DICT_MAP = {u'AD': u'Andorran', u'AE': u'Emirian', u'AF': u'Afghan', u'AG': u'of Antigua and Barbuda', u'AI': u'Anguillan', u'AL': u'Albanian', u'AM': u'Armenian', u'AO': u'Angolan', u'AQ': u'Antarctic', u'AR': u'Argentinian', u'AS': u'American Samoan', u'AT': u'Austrian', u'AU': u'Australian', u'AW': u'Aruban', u'AX': u'of the \xc5land Islands', u'AZ': u'Azerbaijani', u'BA': u'of Bosnia and Herzegovina', u'BB': u'Barbadian', u'BD': u'Bangladeshi', u'BE': u'Belgian', u'BF': u'Burkinabe', u'BG': u'Bulgarian', u'BH': u'Bahraini', u'BI': u'Burundian', u'BJ': u'Beninese', u'BL': u'of Saint Barth\xe9lemy', u'BM': u'Bermudian', u'BN': u'Bruneian', u'BO': u'Bolivian', u'BR': u'Brazilian', u'BS': u'Bahamian', u'BT': u'Bhutanese', u'BV': u'of Bouvet Island', u'BW': u'Botswanan', u'BY': u'Belarusian', u'BZ': u'Belizean', u'CA': u'Canadian', u'CC': u'of the Cocos (Keeling) Islands', u'CD': u'of the Democratic Republic of the Congo', u'CF': u'Central African', u'CG': u'Congolese', u'CH': u'Swiss', u'CI': u'Ivorian', u'CK': u'of the Cook Islands', u'CL': u'Chilean', u'CM': u'Cameroonian', u'CN': u'Chinese', u'CO': u'Colombian', u'CP': u'of Clipperton Island', u'CR': u'Costa Rican', u'CU': u'Cuban', u'CV': u'Cape Verdean', u'CW': u'of Cura\xe7ao', u'CX': u'of Christmas Island', u'CY': u'Cypriot', u'CZ': u'Czech', u'DE': u'German', u'DJ': u'of Djibouti', u'DK': u'Danish', u'DM': u'of Dominica', u'DO': u'Dominican', u'DZ': u'Algerian', u'EC': u'Ecuadorian', u'EE': u'Estonian', u'EG': u'Egyptian', u'EH': u'Sahrawi', u'EL': u'Greek', u'EP': u'European', u'ER': u'Eritrean', u'ES': u'Spanish', u'ET': u'Ethiopian', u'FI': u'Finnish', u'FJ': u'Fijian', u'FK': u'of the Falkland Islands', u'FM': u'of Micronesia', u'FO': u'Faeroese', u'FR': u'French', u'GA': u'Gabonese', u'GB': u'British', u'GD': u'Grenadian', u'GE': u'Georgian', u'GF': u'Guianese', u'GG': u'Guernsey', u'GH': u'Ghanaian', u'GI': u'Gibraltarian', u'GL': u'Greenlandic', u'GM': u'Gambian', u'GN': u'Guinean', u'GP': u'Guadeloupean', u'GQ': u'of Equatorial Guinea', u'GS': u'of South Georgia and the South Sandwich Islands', u'GT': u'Guatemalan', u'GU': u'Guamanian', u'GW': u'of Guinea-Bissau', u'GY': u'Guyanese', u'HK': u'Hong Kong', u'HN': u'Honduran', u'HR': u'Croatian', u'HT': u'Haitian', u'HU': u'Hungarian', u'ID': u'Indonesian', u'IE': u'Irish', u'IL': u'Israeli', u'IM': u'Manx', u'IN': u'Indian', u'IO': u'of the British Indian Ocean Territory', u'IQ': u'Iraqi', u'IR': u'Iranian', u'IS': u'Icelandic', u'IT': u'Italian', u'JE': u'Jersey', u'JM': u'Jamaican', u'JO': u'Jordanian', u'JP': u'Japanese', u'KE': u'Kenyan', u'KG': u'Kyrgyz', u'KH': u'Cambodian', u'KI': u'Kiribatian', u'KM': u'Comorian', u'KN': u'of Saint Kitts and Nevis', u'KP': u'North Korean', u'KR': u'South Korean', u'KW': u'Kuwaiti', u'KY': u'Caymanian', u'KZ': u'Kazakh', u'LA': u'Laotian', u'LB': u'Lebanese', u'LC': u'Saint Lucian', u'LI': u'of Liechtenstein', u'LK': u'Sri Lankan', u'LR': u'Liberian', u'LS': u'of Lesotho', u'LT': u'Lithuanian', u'LU': u'Luxembourgish', u'LV': u'Latvian', u'LY': u'Libyan', u'MA': u'Moroccan', u'MC': u'Monegasque', u'MD': u'Moldovan', u'ME': u'Montenegrin', u'MF': u'of Saint Martin', u'MG': u'Malagasy', u'MH': u'Marshallese', u'ML': u'Malian', u'MM': u'of Myanmar/Burma', u'MN': u'Mongolian', u'MO': u'Macanese', u'MP': u'of the Northern Mariana Islands', u'MQ': u'Martinican', u'MR': u'Mauritanian', u'MS': u'Montserratian', u'MT': u'Maltese', u'MU': u'Mauritian', u'MV': u'Maldivian', u'MW': u'Malawian', u'MX': u'Mexican', u'MY': u'Malaysian', u'MZ': u'Mozambican', u'NA': u'Namibian', u'NC': u'New Caledonian', u'NE': u'Nigerien', u'NF': u'of Norfolk Island', u'NG': u'Nigerian', u'NI': u'Nicaraguan', u'NL': u'Dutch', u'NO': u'Norwegian', u'NP': u'Nepalese', u'NR': u'Nauruan', u'NU': u'Niuean', u'NZ': u'of New Zealand', u'OM': u'Omani', u'PA': u'Panamanian', u'PE': u'Peruvian', u'PF': u'Polynesian', u'PG': u'of Papua New Guinea', u'PH': u'Philippine', u'PK': u'Pakistani', u'PL': u'Polish', u'PM': u'of Saint Pierre and Miquelon', u'PN': u'Pitcairner', u'PR': u'Puerto Rican', u'PT': u'Portuguese', u'PW': u'Palauan', u'PY': u'Paraguayan', u'QA': u'Qatari', u'RE': u'Reunionese', u'RO': u'Romanian', u'RS': u'Serbian', u'RU': u'Russian', u'RW': u'Rwandan', u'SA': u'Saudi Arabian', u'SB': u'of the Solomon Islands', u'SC': u'of Seychelles', u'SD': u'Sudanese', u'SE': u'Swedish', u'SG': u'Singaporean', u'SH': u'of Saint Helena', u'SI': u'Slovenian', u'SJ': u'of Svalbard', u'SK': u'Slovak', u'SL': u'Sierra Leonean', u'SM': u'of San Marino', u'SN': u'Senegalese', u'SO': u'Somalian', u'SR': u'Surinamese', u'SS': u'South Sudanese', u'ST': u'of S\xe3o Tom\xe9 and Pr\xedncipe', u'SV': u'Salvadorian', u'SX': u'of Sint Maarten', u'SY': u'Syrian', u'SZ': u'Swazi', u'TC': u'of the Turks and Caicos Islands', u'TD': u'Chadian', u'TF': u'of the French Southern and Antarctic Lands', u'TG': u'Togolese', u'TH': u'Thai', u'TJ': u'Tajik', u'TK': u'Tokelauan', u'TL': u'East Timorese', u'TM': u'Turkmen', u'TN': u'Tunisian', u'TO': u'Tongan', u'TR': u'Turkish', u'TT': u'of Trinidad and Tobago', u'TV': u'Tuvaluan', u'TW': u'Taiwanese', u'TZ': u'Tanzanian', u'UA': u'Ukrainian', u'UG': u'Ugandan', u'UK': u'British', u'US': u'U.S.', u'UY': u'Uruguayan', u'UZ': u'Uzbek', u'VC': u'Vincentian', u'VE': u'Venezuelan', u'VG': u'of the British Virgin Islands', u'VI': u'of the US Virgin Islands', u'VN': u'Vietnamese', u'VU': u'Vanuatuan', u'WF': u'of the Wallis and Futuna Islands', u'WO': u'world-wide', u'WS': u'Samoan', u'YE': u'Yemeni', u'YT': u'Mahoran', u'ZA': u'South African', u'ZM': u'Zambian', u'ZW': u'Zimbabwean'}
+	
+def _read_url(url, HTTPS=False):
+	proxy_host = "proxy.crawlera.com"
+	proxy_port = "8010"
+	proxy_auth = HTTPProxyAuth("adb5925b628547c6b17135ff6237f87f", "")
+	proxies = {"https": "https://{}:{}/".format(proxy_host, proxy_port)}
+	response = requests.get(
+		url, headers=REQUEST_HEADERS, verify=False,
+		proxies=proxies, auth=proxy_auth, timeout=5.0
+	)
+	return response

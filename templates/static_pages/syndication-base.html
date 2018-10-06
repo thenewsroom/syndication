@@ -1,0 +1,124 @@
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <meta name="google-site-verification" content="RxDqxa7CzOGZHNUTLB5BnROyXmIhhxX7I8rZgyVfQvQ" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Athena</title>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="180x180" href="http://athena.co.in.s3.amazonaws.com/resources/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="http://athena.co.in.s3.amazonaws.com/resources/favicon/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="http://athena.co.in.s3.amazonaws.com/resources/favicon/favicon-16x16.png" sizes="16x16">
+        <script src="https://use.typekit.net/roi0lwm.js"></script>
+        <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    {% endblock %}
+
+    {% block before_core_css %}
+    {% endblock %}
+
+    {% block core_css %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="http://athena.co.in.s3.amazonaws.com/resources/styles/styles.css" rel="stylesheet">
+    {% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
+    <title>
+        {% block title %}
+            Athena
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+{% block header %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container nav-container">
+                    <div class="space-10"></div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">
+                            <svg height="25px" style="" version="1.1" viewbox="28 22 133 31" width="135px" xmlns="http://www.w3.org/2000/svg">
+                                <desc>
+                                    Athena
+                                </desc>
+                                <defs></defs>
+                                <g fill="none" fill-rule="evenodd" id="Group-5" stroke="none" stroke-width="1" transform="translate(28.000000, 22.000000)">
+                                    <path d="M31.92,30.36 C33.2,30.36 34.2,30.16 35.24,29.8 C35.92,29.52 36.52,28.8 36.52,27.92 C36.52,26.8 35.56,25.92 34.48,25.92 C34.32,25.92 33.84,26.04 33.28,26.04 C31.64,26.04 30.68,25.28 30.68,23.4 L30.68,13.04 L34.48,13.04 C35.64,13.04 36.6,12.12 36.6,10.96 C36.6,9.8 35.64,8.88 34.48,8.88 L30.68,8.88 L30.68,5.28 C30.68,3.96 29.6,2.88 28.28,2.88 C26.92,2.88 25.84,3.96 25.84,5.28 L25.84,8.88 L25.04,8.88 C23.88,8.88 22.96,9.8 22.96,10.96 C22.96,12.12 23.88,13.04 25.04,13.04 L25.84,13.04 L25.84,24.16 C25.84,28.8 28.36,30.36 31.92,30.36 L31.92,30.36 Z M41.28,27.8 C41.28,29.16 42.36,30.2 43.68,30.2 C45.04,30.2 46.12,29.16 46.12,27.8 L46.12,18.08 C46.12,14.8 48.08,12.84 50.88,12.84 C53.76,12.84 55.4,14.72 55.4,18 L55.4,27.8 C55.4,29.16 56.48,30.2 57.84,30.2 C59.2,30.2 60.24,29.16 60.24,27.8 L60.24,16.52 C60.24,11.64 57.48,8.44 52.72,8.44 C49.44,8.44 47.48,10.16 46.12,12.12 L46.12,3 C46.12,1.68 45.04,0.6 43.68,0.6 C42.32,0.6 41.28,1.68 41.28,3 L41.28,27.8 Z M69.72,17.96 C70.16,14.68 72.24,12.4 75.2,12.4 C78.4,12.4 80.24,14.84 80.56,17.96 L69.72,17.96 Z M83.36,27.68 C83.72,27.32 84,26.8 84,26.2 C84,25.08 83.16,24.24 82.08,24.24 C81.52,24.24 81.2,24.4 80.84,24.68 C79.48,25.8 77.88,26.52 75.84,26.52 C72.72,26.52 70.28,24.6 69.76,21.16 L83,21.16 C84.24,21.16 85.28,20.2 85.28,18.84 C85.28,13.96 81.96,8.44 75.24,8.44 C69.2,8.44 64.92,13.4 64.92,19.44 L64.92,19.52 C64.92,26.04 69.64,30.48 75.76,30.48 C79.04,30.48 81.44,29.4 83.36,27.68 L83.36,27.68 Z M90.24,27.8 C90.24,29.16 91.32,30.2 92.64,30.2 C94,30.2 95.08,29.16 95.08,27.8 L95.08,18.08 C95.08,14.8 97.04,12.84 99.84,12.84 C102.72,12.84 104.36,14.72 104.36,18 L104.36,27.8 C104.36,29.16 105.44,30.2 106.8,30.2 C108.16,30.2 109.2,29.16 109.2,27.8 L109.2,16.52 C109.2,11.64 106.44,8.44 101.68,8.44 C98.4,8.44 96.44,10.16 95.08,12.12 L95.08,11.08 C95.08,9.72 94,8.64 92.64,8.64 C91.28,8.64 90.24,9.72 90.24,11.08 L90.24,27.8 Z M121.12,30.44 C124.36,30.44 126.56,29.08 128,27.36 L128,28.16 C128,29.24 128.96,30.2 130.36,30.2 C131.68,30.2 132.72,29.2 132.72,27.88 L132.72,17.48 C132.72,14.72 132,12.48 130.44,10.96 C128.96,9.44 126.6,8.6 123.44,8.6 C120.68,8.6 118.64,9.08 116.64,9.84 C115.92,10.12 115.32,10.88 115.32,11.76 C115.32,12.88 116.24,13.76 117.36,13.76 C117.6,13.76 117.84,13.72 118.12,13.64 C119.44,13.12 120.96,12.8 122.8,12.8 C126.2,12.8 128.04,14.4 128.04,17.4 L128.04,17.92 C126.4,17.4 124.72,17.04 122.36,17.04 C117.2,17.04 113.64,19.28 113.64,23.84 L113.64,23.92 C113.64,28.16 117.16,30.44 121.12,30.44 L121.12,30.44 Z M122.48,26.92 C120.16,26.92 118.36,25.76 118.36,23.72 L118.36,23.64 C118.36,21.44 120.2,20.12 123.32,20.12 C125.24,20.12 126.88,20.48 128.12,20.96 L128.12,22.4 C128.12,25.08 125.68,26.92 122.48,26.92 L122.48,26.92 Z" fill="#F6F6F6" id="athena">
+                                    </path>
+                                    <path d="M7.64,30.44 C10.88,30.44 13.08,29.08 14.52,27.36 L14.52,28.16 C14.52,29.24 15.48,30.2 16.88,30.2 C18.2,30.2 19.24,29.2 19.24,27.88 L19.24,17.48 C19.24,14.72 18.52,12.48 16.96,10.96 C15.48,9.44 13.12,8.6 9.96,8.6 C7.2,8.6 5.16,9.08 3.16,9.84 C2.44,10.12 1.84,10.88 1.84,11.76 C1.84,12.88 2.76,13.76 3.88,13.76 C4.12,13.76 4.36,13.72 4.64,13.64 C5.96,13.12 7.48,12.8 9.32,12.8 C12.72,12.8 14.56,14.4 14.56,17.4 L14.56,17.92 C12.92,17.4 11.24,17.04 8.88,17.04 C3.72,17.04 0.16,19.28 0.16,23.84 L0.16,23.92 C0.16,28.16 3.68,30.44 7.64,30.44 L7.64,30.44 Z M9,26.92 C6.68,26.92 4.88,25.76 4.88,23.72 L4.88,23.64 C4.88,21.44 6.72,20.12 9.84,20.12 C11.76,20.12 13.4,20.48 14.64,20.96 L14.64,22.4 C14.64,25.08 12.2,26.92 9,26.92 L9,26.92 Z" fill="#3DC5D7" id="athena">
+                                    </path>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav nav-items-wrapper">
+                            <li>
+                                <a class="nav-items-solid" href="http://athena.co.in/services/content-services/">Content Services</a>
+                            </li>
+                            <li>
+                                <a class="nav-items-solid" href="http://athena.co.in/services/custom-branded-newsletters/">Custom Newsletters</a>
+                            </li>
+                            <li class="dropdown">
+                                <a aria-expanded="false" class="nav-items-solid"
+                               data-toggle="dropdown" href="#">Content Licensing <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="http://athena.co.in/services/content-buyers/">Content Buyers</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://athena.co.in/services/content-licensing-publishers/">Content Publishers</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-items-solid nav-active-item" href="/about-us">About Us</a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right nav_contact_us">
+                            <li>
+                                <a class="sea-serpent-button" href="http://www.athena.co.in/#contact-us" style="top: 3px;">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-10"></div>
+                </div>
+            </nav>
+{% endblock %}
+
+{% block main_content%}
+
+{% endblock %}
+
+{% block footer%}
+<footer>
+        <div class="navbar navbar-inverse navbar-static-top footer-logout" style=" background: #474448; margin-bottom: 0px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <div class="space-20"></div>
+                        <span style="color: #ffffff;">© 2017 Athena Information Solutions Pvt. Ltd.</span>
+                        <div class="space-20"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer><!-- /#footer -->
+{% endblock %}
+
+{% block extra_js%}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}
+
+</body>
+</html>
