@@ -47,11 +47,7 @@ class Story(models.Model):
     PUBLISHED = 2
 
     title = models.CharField('Headline', max_length=800, db_index=True)
-    slug = models.SlugField(
-        max_length=350,
-        # unique_for_date='pub_date',
-        help_text='Automatically built from the title.'
-    )
+    slug = models.SlugField(max_length=300, unique=True)
     body_text = models.TextField(blank=True, null=True)
     original_text = models.TextField(blank=True, null=True)
     pub_date = models.DateTimeField('Date published', db_index=True)

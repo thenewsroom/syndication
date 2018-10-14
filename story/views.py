@@ -121,11 +121,10 @@ def user_monitor(request):
                 'approved_by__username', 'approved_by__id',
             ).annotate(c=Count("created_by")).order_by('approved_by')
 
-            return render_to_response(
+            return render(request,
                 'story/user-monitor.html',
                 {'form': form, 'result': result, 'total_count': total_count,
-                 'base_query_string': base_query_string},
-                context_instance=RequestContext(request)
+                 'base_query_string': base_query_string}
             )
         else:
             form = UserMonitorForm(request.GET)

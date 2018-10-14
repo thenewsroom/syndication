@@ -213,16 +213,16 @@ class SourceUrl(models.Model):
     is_working = models.BooleanField(default=True)
     created_on = models.DateTimeField()
     tag_updated_on = models.DateTimeField()
-    last_triaged = models.DateTimeField(blank=True)
+    last_triaged = models.DateTimeField()
     created_by = models.ForeignKey(User, default=8, related_name='created_sourceurls')
     updated_by = models.ForeignKey(User, blank=True, null=True, related_name='updated_sourceurls')
     is_checked = models.BooleanField(default=True)
-    last_checked = models.DateTimeField(blank=True)
+    last_checked = models.DateTimeField(blank=True, null=True)
     response_code = models.CharField(max_length=10, default='200')
     response_msg = models.CharField(max_length=400, default='OK')
     doc_counter = models.IntegerField(default=0)
     nodoc_counter = models.IntegerField(default=0)
-    last_doc_found_on = models.DateTimeField()
+    last_doc_found_on = models.DateTimeField(blank=True, null=True)
     status = models.IntegerField(choices=STATUS, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     specific_rule = models.TextField(null=True, blank=True)
@@ -249,18 +249,6 @@ class SourceUrl(models.Model):
         storyRemark += u"\n".join([sr.rule.encode('utf-8') for sr in self.scraping_rules.all()])
         return storyRemark
 
-    def aid_link(self):
-        """
-        returns a custom string with count for source admin
-        """
-        params = {'domain': self.source.id, 'source': self.id,
-                  'body_text': self.get_leadline_and_source().encode('utf-8'),
-                  'rule_box': self.get_remarks().encode('utf-8'),
-                  }
-        paramsEncode = urllib.urlencode(params)
-        return '''<b><a href="%s" onclick="return popitup('%s', '/admin/story/story/add/?%s')">%s</a></b>''' % (
-            self.url, self.url, paramsEncode, self.uid)
-
     def published_count(self):
         """
         """
@@ -268,8 +256,6 @@ class SourceUrl(models.Model):
         self.id, self.published_story_count)
 
     published_count.allow_tags = True
-    aid_link.allow_tags = True
-    aid_link.admin_order_field = 'uid'
     published_count.admin_order_field = 'published_story_count'
 
     def save(self, *args, **kwargs):
@@ -320,6 +306,7 @@ class SourceUrl(models.Model):
                 self.tag_updated_on = datetime.now()
             if self.is_checked is True:
                 self.last_checked = datetime.now()
+        self.last_triaged = datetime.now()
 
         super(SourceUrl, self).save()
 

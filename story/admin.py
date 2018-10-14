@@ -72,6 +72,7 @@ class StoryAdmin(admin.ModelAdmin):
 
     list_display = ('title', 'pub_date', 'created_by', 'created_on',
                     'approved_by', 'approved_on', 'comments', 'status')
+    prepopulated_fields = {"slug": ("title",)}
     # list_editable = ()
     # readonly_fields = ('domain', 'source')
     search_fields = ['title', 'body_text', 'url']

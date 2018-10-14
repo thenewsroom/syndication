@@ -138,7 +138,7 @@ class SourceAdmin(admin.ModelAdmin):
 
     fieldsets = ((None, {'fields':
                              (('name', 'slug', 'sid', 'is_active', 'is_integrated'),
-                              ('account', 'assigned_to', 'same_as',),
+                              ('account', 'assigned_to',),
                               # ('exclude_tag', 'exclude_tag_attr', 'exclude_tag_attr_value'),
                               )
                          }
@@ -219,7 +219,7 @@ class SourceUrlAdmin(admin.ModelAdmin):
         models.TextField: {'widget': Textarea(attrs={'rows': 4, 'cols': 100})}
     }
     template = "admin/websource/sourceurl/change_form.html"
-    list_display = ('source', 'status', 'aid_link', 'published_count', 'is_checked', 'need_triage',
+    list_display = ('source', 'status', 'published_count', 'is_checked', 'need_triage',
                     'last_doc_found_on', 'is_updated', 'last_triaged', 'is_working')
 
     fieldsets = ((None, {'fields':
@@ -282,7 +282,7 @@ class SourceUrlAdmin(admin.ModelAdmin):
     def get_list_display(self, request):
         list_display = super(SourceUrlAdmin, self).get_list_display(request)
         if not request.user.is_superuser:
-            list_display = ('source', 'status', 'last_checked', 'aid_link',
+            list_display = ('source', 'status', 'last_checked',
                             'published_count', 'last_doc_found_on', 'is_checked',
                             'is_updated', 'last_triaged')
         return list_display
